@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+ <meta charset="UTF-8">
+ <title>Valet Express</title>
+
+ <!-- Bootstrap -->
+
+<link href="https://fonts.googleapis.com/css?family=Anton|Kavivanar|Roboto|Roboto+Condensed" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+
+
+
+
+</head>
+
+<body>
+<header>
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 id="modal-title"></h1>
+        </div>
+        <div class="modal-body">
+          <div id="mod"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<div class="customContainer">
+	<h1>Valet Parking Console</h1>
+	<form>
+
+
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+
+  </div>
+
+  <button id = "submit" type="submit" class="btn btn-primary" >Submit</button>
+<a class="btn btn-primary" "fonts" href="#" role="button" id="sign" onclick="val()">VALETED</a>
+
+
+
+
+</form>
+</div>
+
+
+
+
+ <script src="https://code.jquery.com/jquery.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script>
+
+
+function val(){
+  window.location = 'index2.html'
+}
+
+     // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyCj_ZX9ZrNmlfO_Nu6sP855CLzJ-q4fT54",
+    authDomain: "firemichaux.firebaseapp.com",
+    databaseURL: "https://firemichaux.firebaseio.com",
+    projectId: "firemichaux",
+    storageBucket: "firemichaux.appspot.com",
+    messagingSenderId: "111424484723"
+ };
+
+ firebase.initializeApp(config);
+
+ var database = firebase.database();
+
+ database.ref().push({
+
+
+      });
+
+function snapshotToArray(snapshot) {
+    var snapArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val().email;
+
+
+        snapArr.push(item);
+
+
+
+       $("#submit").on("click", function(event) {
+       event.preventDefault();
+
+     var email = $("#email").val().trim();
+          for (var i=0; i<snapArr.length;i++){
+          if (email == snapArr[i]){
+
+            $(document).ready(function(){
+            $("#modal-title").text("CHECKED IN");
+             $("#mod").text(email);
+            $("#myModal").modal();
+
+             i=snapArr.length;
+            });
+
+
+          }else {
+            $("#modal-title").text("NOT REGISTERED");
+            $("#mod").text("Please Register The Vehicle and Email Address");
+            $("#myModal").modal();;
+
+            }
+
+}
+
+});
+      $("#valet").on("click", function(event) {
+       event.preventDefault();
+
+
+     })
+
+
+    });
+
+
+
+};
+
+   database.ref().on("value", function(snapshot) {
+
+      // Log everything that's coming out of snapshot
+
+
+
+      snapshotToArray(snapshot);
+
+
+
+      console.log(snapshot.val());
+
+
+
+
+});
+
+
+
+</script>
+ </body>
+ </html>

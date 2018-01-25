@@ -1,0 +1,22 @@
+body {
+   background: url("pexels-photo-305070.jpeg") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   background-repeat: no-repeat;
+ }
+
+ .customContainer {
+   margin: 7% auto;
+   width: 50%;
+   border: black solid 2px;
+   padding: 20px;
+   background: white;
+
+ }
+
+ .valeted {
+   font-family: 'Roboto Condensed', sans-serif;
+   color: #4242eb;
+ }
